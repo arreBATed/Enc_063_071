@@ -2,7 +2,9 @@
 package Servicios;
 
 import Entidades.Pelicula;
+import Utilidades.Comparadores;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class PeliculaServicios {
@@ -20,7 +22,7 @@ public class PeliculaServicios {
         Pelicula p;
         
         p = new Pelicula();
-        System.out.println("------- Datos de la pelicula -------");
+        System.out.println("- Datos de la pelicula ------------");
         System.out.print("Ingrese el titulo de la pelicula: ");
         p.setTitulo(leer.next());
         System.out.println();
@@ -35,7 +37,7 @@ public class PeliculaServicios {
     
     public void MostrarPelicula(Pelicula p) {
         
-        System.out.println("------ Datos de la pelicula -------");
+        System.out.println("- Datos de la pelicula -----------");
         System.out.println("Titulo: "+p.getTitulo());
         System.out.println("Director: "+p.getDirector());
         System.out.println("Duracion: "+p.getDuracion().toString());       
@@ -46,11 +48,11 @@ public class PeliculaServicios {
         int cont = 0;
         for (Pelicula p : listaPeliculas)   {
             cont = cont + 1;
-            System.out.println("-------------------------------");
-            System.out.println("----- Pelicula N#"+cont+" -----");
+            System.out.println("----------------------------------");
+            System.out.println("---------- Pelicula N#"+cont+" ----------");
             MostrarPelicula(p);
         }
-        System.out.println("-------------------------------");
+        System.out.println("-----------------------------------");
     }
      
     public void AgregarPeliculasLista()   {
@@ -59,10 +61,10 @@ public class PeliculaServicios {
         boolean correcto;
         String opcion; 
         int cont = 0;
-        System.out.println("--- Cargando Peliculas ---"); 
+        System.out.println("..... Cargando Peliculas"); 
         do  {
                 cont = cont + 1;
-                System.out.println("--- Pelicula #"+cont+" ---");
+                System.out.println("---------- Pelicula #"+cont+" ------------");
                 this.listaPeliculas.add(crearPelicula());  
                 correcto = true; 
                 do {
@@ -83,6 +85,30 @@ public class PeliculaServicios {
                     }
                 } while (correcto);       
         } while (continuar);        
+    }
+    
+    public void OrdenarPelisDeMayorAMenorDuracion()    {
+        
+        System.out.println(".... ordenando por duracion de mayor a menor ::::");
+        Collections.sort(listaPeliculas, Comparadores.compararDuracionDesc);    
+    }
+    
+    public void OrdenarPelisDeMenorAMayorDuracion()    {
+            
+        System.out.println(".... ordenando por duracion de menor a mayor ::::");
+        Collections.sort(listaPeliculas, Comparadores.compararDuracionAscen);    
+    }
+    
+    public void OrdenarPelisAlfabeticamentePorTitulo()    {
+           
+        System.out.println(".... ordenando alfabeticament por titulos ::::");
+        Collections.sort(listaPeliculas, Comparadores.compararTitulosAscen);      
+    }
+    
+    public void OrdenarPelisAlfabeticamentePorDirector()    {
+           
+        System.out.println(".... ordenando alfabeticament por directores ::::");
+        Collections.sort(listaPeliculas, Comparadores.compararDirectoresAscen);       
     }
     
 }

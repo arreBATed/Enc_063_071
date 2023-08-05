@@ -39,5 +39,5 @@ public class Pelicula {
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
-    
+
 }
